@@ -21,6 +21,8 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
 import { AuthService } from './auth.service';
 
+import { authGuard } from './auth-guard.guard';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -42,12 +44,33 @@ import { AuthService } from './auth.service';
       { path: '', component: HomeComponent },
       { path: 'products', component: ProductsComponent },
       { path: 'shopping-cart', component: ShoppingCartComponent },
-      { path: 'checkout', component: CheckoutComponent },
-      { path: 'order-success', component: OrderSuccessComponent },
-      { path: 'my/orders', component: MyOrdersComponent },
       { path: 'login', component: LoginComponent },
-      { path: 'admin/products', component: AdminProductsComponent },
-      { path: 'admin/orders', component: AdminOrdersComponent },
+      {
+        path: 'checkout',
+        component: CheckoutComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'order-success',
+        component: OrderSuccessComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'my/orders',
+        component: MyOrdersComponent,
+        canActivate: [authGuard],
+      },
+
+      {
+        path: 'admin/products',
+        component: AdminProductsComponent,
+        canActivate: [authGuard],
+      },
+      {
+        path: 'admin/orders',
+        component: AdminOrdersComponent,
+        canActivate: [authGuard],
+      },
     ]),
   ],
   providers: [AuthService],
