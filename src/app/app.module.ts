@@ -19,23 +19,22 @@ import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire/compat';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
+import { AuthService } from './auth.service';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    ProductsComponent,
-    ShoppingCartComponent,
-    CheckoutComponent,
-    OrderSuccessComponent,
-    MyOrdersComponent,
-    AdminProductsComponent,
-    AdminOrdersComponent,
-    LoginComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     NavbarComponent,
+    LoginComponent,
+    HomeComponent,
+    CheckoutComponent,
+    MyOrdersComponent,
+    AdminProductsComponent,
+    AdminOrdersComponent,
+    ProductsComponent,
+    ShoppingCartComponent,
+    OrderSuccessComponent,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireDatabaseModule,
     AngularFireAuthModule,
@@ -51,7 +50,7 @@ import { AngularFireDatabaseModule } from '@angular/fire/compat/database';
       { path: 'admin/orders', component: AdminOrdersComponent },
     ]),
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
